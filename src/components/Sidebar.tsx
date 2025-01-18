@@ -6,21 +6,21 @@ const sidebarItems = [
   { id: 'today', label: 'Today', icon: '📰', path: '/' },
   { id: 'feed', label: 'Feed', icon: '💭', path: '/feed' },
   { id: 'videos', label: 'Videos', icon: '🎥', path: '/videos' },
-  { id: 'news-plus', label: 'News+', icon: '⭐', path: '#' },
-  { id: 'sports', label: 'Sports', icon: '🏈', path: '#' },
-  { id: 'puzzles', label: 'Puzzles', icon: '🧩', path: '#' },
-  { id: 'shared', label: 'Shared with You', icon: '👥', path: '#' },
-  { id: 'saved', label: 'Saved Stories', icon: '🔖', path: '#' },
-  { id: 'history', label: 'History', icon: '📅', path: '#' },
+  { id: 'news-plus', label: 'News+', icon: '⭐', path: '/news-plus' },
+  { id: 'sports', label: 'Sports', icon: '🏈', path: '/sports' },
+  { id: 'puzzles', label: 'Puzzles', icon: '🧩', path: '/puzzles' },
+  { id: 'shared', label: 'Shared with You', icon: '👥', path: '/shared' },
+  { id: 'saved', label: 'Saved Stories', icon: '🔖', path: '/saved' },
+  { id: 'history', label: 'History', icon: '📅', path: '/history' },
 ];
 
 const favoriteItems = [
-  { id: 'bleacher', label: 'Bleacher Report', icon: '📊', path: '#' },
-  { id: 'politics', label: 'Politics', icon: '🏛️', path: '#' },
-  { id: 'cowboys', label: 'Dallas Cowboys', icon: '🏈', path: '#' },
-  { id: 'ctv', label: 'CTV News', icon: '📺', path: '#' },
-  { id: 'canadiens', label: 'Montreal Canadiens', icon: '🏒', path: '#' },
-  { id: 'cbc', label: 'CBC News', icon: '📰', path: '#' },
+  { id: 'bleacher', label: 'Bleacher Report', icon: '📊', path: '/favorites/bleacher' },
+  { id: 'politics', label: 'Politics', icon: '🏛️', path: '/favorites/politics' },
+  { id: 'cowboys', label: 'Dallas Cowboys', icon: '🏈', path: '/favorites/cowboys' },
+  { id: 'ctv', label: 'CTV News', icon: '📺', path: '/favorites/ctv' },
+  { id: 'canadiens', label: 'Montreal Canadiens', icon: '🏒', path: '/favorites/canadiens' },
+  { id: 'cbc', label: 'CBC News', icon: '📰', path: '/favorites/cbc' },
 ];
 
 export function Sidebar() {
