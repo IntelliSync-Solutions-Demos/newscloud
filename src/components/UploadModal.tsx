@@ -115,11 +115,11 @@ export function UploadModal({ open, onOpenChange }: UploadModalProps) {
           </div>
 
           {selectedCategory === "New Category" && (
-            <div className="space-y-2">
+            <div className="space-y-2 mt-2">
               <Label htmlFor="newCategory">New Category Name</Label>
               <Input
                 id="newCategory"
-                {...register("newCategory")}
+                {...register("newCategory", { required: selectedCategory === "New Category" })}
                 placeholder="Enter new category name"
               />
             </div>

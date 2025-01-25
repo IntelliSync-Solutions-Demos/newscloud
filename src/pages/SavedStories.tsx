@@ -1,4 +1,3 @@
-import { Sidebar } from "@/components/Sidebar";
 import { Button } from "@/components/ui/button";
 import { Bookmark } from "lucide-react";
 
@@ -22,7 +21,6 @@ const savedStories = [
 const SavedStories = () => {
   return (
     <div className="flex min-h-screen">
-      <Sidebar />
       <main className="flex-1 p-6">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-3xl font-bold mb-6">Saved Stories</h1>

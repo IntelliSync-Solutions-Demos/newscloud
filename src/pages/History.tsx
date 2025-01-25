@@ -1,4 +1,3 @@
-import { Sidebar } from "@/components/Sidebar";
 import { Button } from "@/components/ui/button";
 import { Clock, X } from "lucide-react";
 
@@ -20,7 +19,6 @@ const historyItems = [
 const History = () => {
   return (
     <div className="flex min-h-screen">
-      <Sidebar />
       <main className="flex-1 p-6">
         <div className="max-w-4xl mx-auto">
           <div className="flex justify-between items-center mb-6">

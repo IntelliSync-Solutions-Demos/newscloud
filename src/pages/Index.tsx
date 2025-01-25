@@ -1,4 +1,3 @@
-import { Sidebar } from "@/components/Sidebar";
 import { NewsCard } from "@/components/NewsCard";
 
 const newsData = [
@@ -35,7 +34,6 @@ const newsData = [
 const Index = () => {
   return (
     <div className="flex min-h-screen">
-      <Sidebar />
       <main className="flex-1 overflow-y-auto p-6">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-4xl font-bold mb-8">Today</h1>

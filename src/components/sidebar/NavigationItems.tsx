@@ -1,10 +1,11 @@
+import React from 'react';
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 interface NavigationItem {
   id: string;
   label: string;
-  icon: string;
+  icon: string | React.ReactNode;
   path: string;
 }
 
@@ -25,7 +26,9 @@ export function NavigationItems({ items, currentPath }: NavigationItemsProps) {
             currentPath === item.path && "active"
           )}
         >
-          <span className="text-lg">{item.icon}</span>
+          <span className="text-lg">
+            {typeof item.icon === 'string' ? item.icon : item.icon}
+          </span>
           <span>{item.label}</span>
         </Link>
       ))}

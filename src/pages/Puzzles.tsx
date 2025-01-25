@@ -1,4 +1,13 @@
-import { Sidebar } from "@/components/Sidebar";
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Crossword } from "@/components/Crossword";
+import { Sudoku } from "@/components/Sudoku";
+import { Wordle } from "@/components/Wordle";
 
 const puzzles = [
   {
@@ -17,32 +26,67 @@ const puzzles = [
   }
 ];
 
-const Puzzles = () => {
+export default function Puzzles() {
+  const [searchTerm, setSearchTerm] = React.useState('');
+
   return (
-    <div className="flex min-h-screen">
-      <Sidebar />
-      <main className="flex-1 p-6">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl font-bold mb-6">Puzzles</h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <ScrollArea className="h-full w-full p-4">
+      <Card className="w-full">
+        <CardHeader>
+          <CardTitle>Puzzle Collection</CardTitle>
+        </CardHeader>
+        <Separator className="mb-4" />
+        <CardContent>
+          <div className="flex space-x-2 mb-4">
+            <Input 
+              type="text" 
+              placeholder="Search puzzles..." 
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="flex-grow"
+            />
+            <Button onClick={() => alert('Search functionality coming soon!')}>
+              Search
+            </Button>
+          </div>
+
+          <Tabs defaultValue="crossword" className="w-full">
+            <TabsList className="grid w-full grid-cols-3">
+              <TabsTrigger value="crossword">Crossword</TabsTrigger>
+              <TabsTrigger value="sudoku">Sudoku</TabsTrigger>
+              <TabsTrigger value="wordle">Wordle</TabsTrigger>
+            </TabsList>
+            <TabsContent value="crossword">
+              <Crossword />
+            </TabsContent>
+            <TabsContent value="sudoku">
+              <Sudoku />
+            </TabsContent>
+            <TabsContent value="wordle">
+              <Wordle />
+            </TabsContent>
+          </Tabs>
+
+          <Separator className="my-4" />
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {puzzles.map((puzzle) => (
-              <div
-                key={puzzle.id}
-                className="p-6 rounded-lg border border-border bg-card hover:bg-secondary/50 transition-colors cursor-pointer"
-              >
-                <h3 className="text-xl font-semibold mb-2">{puzzle.title}</h3>
-                <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                  <span>{puzzle.difficulty}</span>
-                  <span>•</span>
-                  <span>{puzzle.completionRate} completed</span>
-                </div>
-              </div>
+              <Card key={puzzle.id}>
+                <CardHeader>
+                  <CardTitle>{puzzle.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2">
+                    <p>Difficulty: {puzzle.difficulty}</p>
+                    <p>Completion Rate: {puzzle.completionRate}</p>
+                    <Button variant="outline">Start Puzzle</Button>
+                  </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
-        </div>
-      </main>
-    </div>
+        </CardContent>
+      </Card>
+    </ScrollArea>
   );
-};
-
-export default Puzzles;
+}

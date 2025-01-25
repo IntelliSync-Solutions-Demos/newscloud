@@ -1,0 +1,46 @@
+# Project TODO List
+
+## Amazon Product Advertising API
+- [ ] Obtain Amazon Product Advertising API credentials
+- [ ] Configure API keys in .env file
+- [ ] Test API integration thoroughly
+- [ ] Implement error handling for API rate limits
+
+## Shopping Page Enhancements
+- [ ] Add advanced filtering options
+- [ ] Implement sorting for product results
+- [ ] Create product detail modal/view
+- [ ] Add price tracking/history feature
+
+## Wishlist Improvements
+- [ ] Add ability to export wishlist
+- [ ] Implement wishlist sharing
+- [ ] Create wishlist categories/folders
+
+## Performance & Security
+- [ ] Optimize API call caching
+- [ ] Implement rate limiting for product searches
+- [ ] Add analytics for product interactions
+
+## Supabase Configuration
+- [ ] Set up Supabase project for NewsCloud Haven
+- [ ] Generate and securely store Supabase API keys
+  - Ensure keys are added to .env file
+  - Do NOT commit sensitive keys to version control
+- [ ] Configure Supabase authentication methods
+- [ ] Set up initial database schema for:
+  - user_sidebar_preferences
+  - Other required tables
+- [ ] Implement Row Level Security (RLS) policies
+- [ ] Test Supabase integration thoroughly before production deployment
+- [ ] Document Supabase setup process for team reference
+
+## Future Features
+- [ ] Price drop alerts
+- [ ] Compare prices across different retailers
+- [ ] Integration with price tracking services
+
+## Documentation
+- [ ] Create comprehensive README
+- [ ] Document API integration process
+- [ ] Add inline code comments for complex logic

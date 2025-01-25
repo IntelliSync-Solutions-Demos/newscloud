@@ -1,4 +1,3 @@
-import { Sidebar } from "@/components/Sidebar";
 import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Heart, Repeat2, Share } from "lucide-react";
@@ -31,7 +30,6 @@ const feedData = [
 const Feed = () => {
   return (
     <div className="flex min-h-screen">
-      <Sidebar />
       <main className="flex-1 border-l border-border">
         <div className="max-w-2xl mx-auto">
           <div className="border-b border-border p-4">
