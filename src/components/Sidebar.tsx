@@ -16,6 +16,7 @@ const sidebarItems = [
   { id: 'shared', label: 'Shared with You', icon: '👥', path: '/shared' },
   { id: 'saved', label: 'Saved Stories', icon: '🔖', path: '/saved' },
   { id: 'history', label: 'History', icon: '📅', path: '/history' },
+  { id: 'ai-chat', label: 'AI Chat', icon: '🤖', path: '/ai' },
 ];
 
 const favoriteItems = [

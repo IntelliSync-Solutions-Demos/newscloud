@@ -1,25 +1,22 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import Videos from "./pages/Videos";
-import Feed from "./pages/Feed";
-import NewsPlus from "./pages/NewsPlus";
-import Sports from "./pages/Sports";
-import Puzzles from "./pages/Puzzles";
-import Shared from "./pages/Shared";
-import SavedStories from "./pages/SavedStories";
-import History from "./pages/History";
-
-const queryClient = new QueryClient();
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Sidebar } from "./components/Sidebar";
+import { Index } from "./pages/Index";
+import { Feed } from "./pages/Feed";
+import { Videos } from "./pages/Videos";
+import { NewsPlus } from "./pages/NewsPlus";
+import { Sports } from "./pages/Sports";
+import { Puzzles } from "./pages/Puzzles";
+import { Shared } from "./pages/Shared";
+import { SavedStories } from "./pages/SavedStories";
+import { History } from "./pages/History";
+import { AI } from "./pages/AI";
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <TooltipProvider>
+    <Router>
+      <div className="flex h-screen">
+        <Sidebar />
+        <main className="flex-1 overflow-y-auto bg-background">
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/feed" element={<Feed />} />
@@ -30,12 +27,11 @@ function App() {
             <Route path="/shared" element={<Shared />} />
             <Route path="/saved" element={<SavedStories />} />
             <Route path="/history" element={<History />} />
+            <Route path="/ai" element={<AI />} />
           </Routes>
-          <Toaster />
-          <Sonner />
-        </TooltipProvider>
-      </BrowserRouter>
-    </QueryClientProvider>
+        </main>
+      </div>
+    </Router>
   );
 }
 
