@@ -12,6 +12,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useToast } from "@/components/ui/use-toast";
 
 interface UploadModalProps {
@@ -23,16 +30,44 @@ interface FormData {
   title: string;
   description: string;
   content: string;
+  category: string;
+  newCategory?: string;
   tags: string;
+  files: FileList;
 }
+
+const existingCategories = [
+  "Today",
+  "Feed",
+  "Videos",
+  "News+",
+  "Sports",
+  "Puzzles",
+  "New Category",
+];
 
 export function UploadModal({ open, onOpenChange }: UploadModalProps) {
   const { toast } = useToast();
-  const { register, handleSubmit, reset } = useForm<FormData>();
+  const { register, handleSubmit, reset, watch } = useForm<FormData>();
+  const [selectedCategory, setSelectedCategory] = useState("Today");
 
   const onSubmit = (data: FormData) => {
-    // Here you would typically send the data to your backend
-    console.log("Form submitted:", data);
+    const formData = new FormData();
+    formData.append("title", data.title);
+    formData.append("description", data.description);
+    formData.append("content", data.content);
+    formData.append("category", selectedCategory === "New Category" ? data.newCategory || "" : selectedCategory);
+    formData.append("tags", data.tags);
+
+    if (data.files) {
+      Array.from(data.files).forEach((file) => {
+        formData.append("files", file);
+      });
+    }
+
+    // Here you would typically send the formData to your backend
+    console.log("Form submitted:", Object.fromEntries(formData));
+    
     toast({
       title: "Content uploaded",
       description: "Your content has been successfully uploaded.",
@@ -59,6 +94,37 @@ export function UploadModal({ open, onOpenChange }: UploadModalProps) {
               placeholder="Enter your title"
             />
           </div>
+          
+          <div className="space-y-2">
+            <Label htmlFor="category">Category</Label>
+            <Select
+              value={selectedCategory}
+              onValueChange={setSelectedCategory}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Select a category" />
+              </SelectTrigger>
+              <SelectContent>
+                {existingCategories.map((category) => (
+                  <SelectItem key={category} value={category}>
+                    {category}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          {selectedCategory === "New Category" && (
+            <div className="space-y-2">
+              <Label htmlFor="newCategory">New Category Name</Label>
+              <Input
+                id="newCategory"
+                {...register("newCategory")}
+                placeholder="Enter new category name"
+              />
+            </div>
+          )}
+
           <div className="space-y-2">
             <Label htmlFor="description">Description</Label>
             <Textarea
@@ -67,6 +133,7 @@ export function UploadModal({ open, onOpenChange }: UploadModalProps) {
               placeholder="Enter a brief description"
             />
           </div>
+
           <div className="space-y-2">
             <Label htmlFor="content">Content</Label>
             <Textarea
@@ -76,6 +143,19 @@ export function UploadModal({ open, onOpenChange }: UploadModalProps) {
               className="min-h-[150px]"
             />
           </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="files">Upload Files</Label>
+            <Input
+              id="files"
+              type="file"
+              multiple
+              {...register("files")}
+              className="cursor-pointer"
+              accept="image/*,.pdf,.doc,.docx,.txt"
+            />
+          </div>
+
           <div className="space-y-2">
             <Label htmlFor="tags">Tags</Label>
             <Input
@@ -84,6 +164,7 @@ export function UploadModal({ open, onOpenChange }: UploadModalProps) {
               placeholder="Enter tags separated by commas"
             />
           </div>
+
           <DialogFooter>
             <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
               Cancel
