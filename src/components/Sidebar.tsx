@@ -1,6 +1,9 @@
 import { Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLocation, Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { UploadModal } from "./UploadModal";
+import { useState } from "react";
 
 const sidebarItems = [
   { id: 'today', label: 'Today', icon: '📰', path: '/' },
@@ -25,6 +28,7 @@ const favoriteItems = [
 
 export function Sidebar() {
   const location = useLocation();
+  const [uploadModalOpen, setUploadModalOpen] = useState(false);
 
   return (
     <div className="w-64 h-screen flex-shrink-0 border-r border-border bg-card overflow-y-auto">
@@ -37,6 +41,13 @@ export function Sidebar() {
             className="w-full bg-secondary pl-9 pr-4 py-2 text-sm rounded-md border-0 focus:ring-1 focus:ring-primary"
           />
         </div>
+
+        <Button 
+          onClick={() => setUploadModalOpen(true)}
+          className="w-full bg-primary"
+        >
+          Upload Content
+        </Button>
 
         <nav className="space-y-1">
           {sidebarItems.map((item) => (
@@ -72,6 +83,11 @@ export function Sidebar() {
           </nav>
         </div>
       </div>
+
+      <UploadModal 
+        open={uploadModalOpen} 
+        onOpenChange={setUploadModalOpen} 
+      />
     </div>
   );
 }
